@@ -1,0 +1,25 @@
+{
+  "name": "Komic-crawler-daemon",
+  "version": "1.0.0",
+  "description": "Komic crawler daemon",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KomicAPI/Komic-Crawler-daemon"
+  },
+  "author": "Komic",
+  "license": "AGPL",
+  "bugs": {
+    "url": "https://github.com/KomicAPI/Komic-Crawler-daemon/issues"
+  },
+  "homepage": "https://github.com/KomicAPI/Komic-Crawler-daemon",
+  "dependencies": {
+    "optimist": "^0.6.1",
+    "pg": "^4.3.0",
+    "pg-hstore": "^2.3.1",
+    "sequelize": "^2.0.3"
+  }
+}
