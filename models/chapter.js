@@ -4,7 +4,8 @@ var Sequelize = require('sequelize'),
 
 var Chapter = db.define('chapter', {
 	id : {type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true},
-	title : {type: Sequelize.STRING},
+	comicId: {type: Sequelize.INTEGER, unique: "comicTitle"},
+	title : {type: Sequelize.STRING, unique: "comicTitle"},
 	no : {type: Sequelize.INTEGER},
 	pages : {type: Sequelize.INTEGER},
 	renderInfo : {type: Sequelize.TEXT}

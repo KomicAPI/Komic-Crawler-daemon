@@ -4,7 +4,8 @@ var Sequelize = require('sequelize'),
 
 var Comic = db.define('comic', {
 	id : {type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true},
-	title : {type: Sequelize.STRING, unique: true},
+	siteId: {type: Sequelize.INTEGER, unique: 'siteTitle'},
+	title : {type: Sequelize.STRING, unique: 'siteTitle'},
 	finished : {type: Sequelize.BOOLEAN},
 	comicInfo : {type: Sequelize.TEXT},
 	updateInfo : {type: Sequelize.TEXT}

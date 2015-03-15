@@ -14,6 +14,7 @@ if (argv.name && argv.crawler
 				console.log('dulpicated key');
 				exit();
 			});
+			// TODO: validate first
 		} else {
 			Site.find({
 				where: {

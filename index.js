@@ -1,28 +1,32 @@
 // Just demo code
-var Site = require('./models/site'),
+var sequelize = require("sequelize"),
+	Site = require('./models/site'),
 	Comic = require('./models/comic'),
 	Chapter = require('./models/chapter'),
 	promise = require('sequelize').Promise,
-	Executor = require('./lib/executor');
+	Executor = require('./lib/executor'),
+	log = require('./lib/log');
 
-console.log('initializeing database');
-promise.all([Site.sync(), Comic.sync(), Chapter.sync()]).then(function () {
-	console.log('all created');
+log.info('initializeing database');
+Site.sync()
+.then(function () { return Comic.sync(); })
+.then(function () { return Chapter.sync(); })
+.then(function () {
+	log.info('all created');
 	// start crawling sites
 	Site.findAll().then(function (instanceArray) {
 		var executors = instanceArray.map(function (instance) {
 			return new Executor(instance.get('crawler'));
 		});
-
 		executors.forEach(function (executor) {
 			// crawling comics
-			executor.comic().then(function (result) {
-				console.log('comic result: ', result);
-			}).catch(function (err) {
-				console.error(err);
+			executor.execute("comic").then(function (result) {
+				log.info('comic result: ', result);
+			}).catch(function (e) {
+				log.error(e);
 			});
 		});
 	}).catch(function (e) {
-		console.log("catched", e);
+		log.log(e);
 	});
 });
